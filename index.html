@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Make window.fetch configurable and writable, preventing crashes from sandboxed environment network wrappers
+      try {
+        let currentFetch = window.fetch;
+        const descriptor = {
+          configurable: true,
+          enumerable: true,
+          get() {
+            return currentFetch;
+          },
+          set(val) {
+            currentFetch = val;
+          }
+        };
+        try {
+          Object.defineProperty(window, 'fetch', descriptor);
+        } catch (e1) {
+          try {
+            Object.defineProperty(Window.prototype, 'fetch', descriptor);
+          } catch (e2) {
+            try {
+              Object.defineProperty(EventTarget.prototype, 'fetch', descriptor);
+            } catch (e3) {
+              console.warn("Unable to define fetch setter on prototype chain", e3);
+            }
+          }
+        }
+      } catch (e) {
+        console.warn("Could not redefine fetch descriptor", e);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

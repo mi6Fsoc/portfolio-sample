@@ -1,0 +1,6 @@
+{
+  "name": "Max Reed Portfolio",
+  "description": "A dark, highly polished full-viewport personal portfolio Features section for Max Reed, featuring liquid glass styling, smooth custom marquees, and rich grid elements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
